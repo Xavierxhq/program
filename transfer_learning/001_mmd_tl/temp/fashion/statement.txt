@@ -1,0 +1,8 @@
+the experiments carried out here compare the performance of 
+1. mnist + usps as training set, usps as test set.
+
+the poisoning is carried out in setting 1 with poisoning rate 1.0, and the method is LABEL FLIPPING.
+
+STATEMENT:
+1. label flipping wont affect the MMD, so the drop of performance should be out of the influence in
+   soft loss, means the dataset's being affected likewise in usual deep learning

@@ -1,0 +1,90 @@
+Train Epoch:  1 [  20/  31 (64.5%)] Loss(2.0501), soft_Loss(2.0501), mmd_Loss(0.0000), gamma(0.1651)
+Epoch 1: Average loss(3.3018), Accuracy: 150/1497 (10.02%)
+
+Train Epoch:  2 [  20/  31 (64.5%)] Loss(1.6975), soft_Loss(1.6975), mmd_Loss(0.0000), gamma(0.3215)
+Epoch 2: Average loss(2.0955), Accuracy: 385/1497 (25.72%)
+
+Train Epoch:  3 [  20/  31 (64.5%)] Loss(1.3784), soft_Loss(1.3784), mmd_Loss(0.0000), gamma(0.4621)
+Epoch 3: Average loss(1.2835), Accuracy: 885/1497 (59.12%)
+
+Train Epoch:  4 [  20/  31 (64.5%)] Loss(1.0624), soft_Loss(1.0624), mmd_Loss(0.0000), gamma(0.5828)
+Epoch 4: Average loss(1.0048), Accuracy: 1051/1497 (70.21%)
+
+Train Epoch:  5 [  20/  31 (64.5%)] Loss(0.6665), soft_Loss(0.6665), mmd_Loss(0.0000), gamma(0.6823)
+Epoch 5: Average loss(0.8402), Accuracy: 1137/1497 (75.95%)
+
+Train Epoch:  6 [  20/  31 (64.5%)] Loss(0.6430), soft_Loss(0.6430), mmd_Loss(0.0000), gamma(0.7616)
+Epoch 6: Average loss(0.7246), Accuracy: 1174/1497 (78.42%)
+
+Train Epoch:  7 [  20/  31 (64.5%)] Loss(0.6012), soft_Loss(0.6012), mmd_Loss(0.0000), gamma(0.8232)
+Epoch 7: Average loss(0.7016), Accuracy: 1181/1497 (78.89%)
+
+Train Epoch:  8 [  20/  31 (64.5%)] Loss(0.6077), soft_Loss(0.6077), mmd_Loss(0.0000), gamma(0.8701)
+Epoch 8: Average loss(0.6050), Accuracy: 1215/1497 (81.16%)
+
+Train Epoch:  9 [  20/  31 (64.5%)] Loss(0.5071), soft_Loss(0.5071), mmd_Loss(0.0000), gamma(0.9051)
+Epoch 9: Average loss(0.5675), Accuracy: 1259/1497 (84.10%)
+
+Train Epoch: 10 [  20/  31 (64.5%)] Loss(0.4219), soft_Loss(0.4219), mmd_Loss(0.0000), gamma(0.9311)
+Epoch 10: Average loss(0.5455), Accuracy: 1251/1497 (83.57%)
+
+Train Epoch: 11 [  20/  31 (64.5%)] Loss(0.3016), soft_Loss(0.3016), mmd_Loss(0.0000), gamma(0.9502)
+Epoch 11: Average loss(0.5103), Accuracy: 1276/1497 (85.24%)
+
+Train Epoch: 12 [  20/  31 (64.5%)] Loss(0.3011), soft_Loss(0.3011), mmd_Loss(0.0000), gamma(0.9640)
+Epoch 12: Average loss(0.4621), Accuracy: 1304/1497 (87.11%)
+
+Train Epoch: 13 [  20/  31 (64.5%)] Loss(0.4267), soft_Loss(0.4267), mmd_Loss(0.0000), gamma(0.9741)
+Epoch 13: Average loss(0.4950), Accuracy: 1264/1497 (84.44%)
+
+Train Epoch: 14 [  20/  31 (64.5%)] Loss(0.2736), soft_Loss(0.2736), mmd_Loss(0.0000), gamma(0.9814)
+Epoch 14: Average loss(0.4542), Accuracy: 1287/1497 (85.97%)
+
+Train Epoch: 15 [  20/  31 (64.5%)] Loss(0.2804), soft_Loss(0.2804), mmd_Loss(0.0000), gamma(0.9866)
+Epoch 15: Average loss(0.4178), Accuracy: 1320/1497 (88.18%)
+
+Train Epoch: 16 [  20/  31 (64.5%)] Loss(0.3207), soft_Loss(0.3207), mmd_Loss(0.0000), gamma(0.9904)
+Epoch 16: Average loss(0.4749), Accuracy: 1274/1497 (85.10%)
+
+Train Epoch: 17 [  20/  31 (64.5%)] Loss(0.1950), soft_Loss(0.1950), mmd_Loss(0.0000), gamma(0.9931)
+Epoch 17: Average loss(0.4449), Accuracy: 1306/1497 (87.24%)
+
+Train Epoch: 18 [  20/  31 (64.5%)] Loss(0.2099), soft_Loss(0.2099), mmd_Loss(0.0000), gamma(0.9951)
+Epoch 18: Average loss(0.4239), Accuracy: 1305/1497 (87.17%)
+
+Train Epoch: 19 [  20/  31 (64.5%)] Loss(0.4030), soft_Loss(0.4030), mmd_Loss(0.0000), gamma(0.9965)
+Epoch 19: Average loss(0.3986), Accuracy: 1319/1497 (88.11%)
+
+Train Epoch: 20 [  20/  31 (64.5%)] Loss(0.2957), soft_Loss(0.2957), mmd_Loss(0.0000), gamma(0.9975)
+Epoch 20: Average loss(0.4078), Accuracy: 1316/1497 (87.91%)
+
+Train Epoch: 21 [  20/  31 (64.5%)] Loss(0.1979), soft_Loss(0.1979), mmd_Loss(0.0000), gamma(0.9982)
+Epoch 21: Average loss(0.4292), Accuracy: 1292/1497 (86.31%)
+
+Train Epoch: 22 [  20/  31 (64.5%)] Loss(0.2854), soft_Loss(0.2854), mmd_Loss(0.0000), gamma(0.9987)
+Epoch 22: Average loss(0.3849), Accuracy: 1332/1497 (88.98%)
+
+Train Epoch: 23 [  20/  31 (64.5%)] Loss(0.1882), soft_Loss(0.1882), mmd_Loss(0.0000), gamma(0.9991)
+Epoch 23: Average loss(0.4200), Accuracy: 1312/1497 (87.64%)
+
+Train Epoch: 24 [  20/  31 (64.5%)] Loss(0.1805), soft_Loss(0.1805), mmd_Loss(0.0000), gamma(0.9993)
+Epoch 24: Average loss(0.3868), Accuracy: 1326/1497 (88.58%)
+
+Train Epoch: 25 [  20/  31 (64.5%)] Loss(0.1359), soft_Loss(0.1359), mmd_Loss(0.0000), gamma(0.9995)
+Epoch 25: Average loss(0.4906), Accuracy: 1280/1497 (85.50%)
+
+Train Epoch: 26 [  20/  31 (64.5%)] Loss(0.1660), soft_Loss(0.1660), mmd_Loss(0.0000), gamma(0.9997)
+Epoch 26: Average loss(0.3603), Accuracy: 1342/1497 (89.65%)
+
+Train Epoch: 27 [  20/  31 (64.5%)] Loss(0.2572), soft_Loss(0.2572), mmd_Loss(0.0000), gamma(0.9998)
+Epoch 27: Average loss(0.3952), Accuracy: 1324/1497 (88.44%)
+
+Train Epoch: 28 [  20/  31 (64.5%)] Loss(0.1478), soft_Loss(0.1478), mmd_Loss(0.0000), gamma(0.9998)
+Epoch 28: Average loss(0.3613), Accuracy: 1336/1497 (89.25%)
+
+Train Epoch: 29 [  20/  31 (64.5%)] Loss(0.1832), soft_Loss(0.1832), mmd_Loss(0.0000), gamma(0.9999)
+Epoch 29: Average loss(0.3791), Accuracy: 1330/1497 (88.84%)
+
+Train Epoch: 30 [  20/  31 (64.5%)] Loss(0.2239), soft_Loss(0.2239), mmd_Loss(0.0000), gamma(0.9999)
+Epoch 30: Average loss(0.3854), Accuracy: 1323/1497 (88.38%)
+

@@ -1,0 +1,9 @@
+the experiments carried out here compare the performance of 
+1. usps dataset only
+2. mnist dataset only
+3. mnist + usps as training set, usps as test set.
+
+the poisoning is carried out in setting 3, and the method is ().
+
+STATEMENT:
+

@@ -1,0 +1,157 @@
+Train Epoch:  1 [ 200/ 937 (21.3%)] Loss(2.1773), soft_Loss(2.1141), mmd_Loss(0.0830), gamma(0.7616)
+Train Epoch:  1 [ 400/ 937 (42.7%)] Loss(1.6553), soft_Loss(1.5949), mmd_Loss(0.0793), gamma(0.7616)
+Train Epoch:  1 [ 600/ 937 (64.0%)] Loss(1.8696), soft_Loss(1.8100), mmd_Loss(0.0782), gamma(0.7616)
+Train Epoch:  1 [ 800/ 937 (85.4%)] Loss(1.9356), soft_Loss(1.8805), mmd_Loss(0.0724), gamma(0.7616)
+Epoch 1: Average loss(2.7234), Accuracy: 274/1497 (18.30%)
+
+Train Epoch:  2 [ 200/ 937 (21.3%)] Loss(1.6417), soft_Loss(1.5725), mmd_Loss(0.0718), gamma(0.9640)
+Train Epoch:  2 [ 400/ 937 (42.7%)] Loss(1.5542), soft_Loss(1.4783), mmd_Loss(0.0787), gamma(0.9640)
+Train Epoch:  2 [ 600/ 937 (64.0%)] Loss(1.5578), soft_Loss(1.4916), mmd_Loss(0.0686), gamma(0.9640)
+Train Epoch:  2 [ 800/ 937 (85.4%)] Loss(1.4626), soft_Loss(1.3908), mmd_Loss(0.0745), gamma(0.9640)
+Epoch 2: Average loss(2.9210), Accuracy: 160/1497 (10.69%)
+
+Train Epoch:  3 [ 200/ 937 (21.3%)] Loss(1.5665), soft_Loss(1.4956), mmd_Loss(0.0712), gamma(0.9951)
+Train Epoch:  3 [ 400/ 937 (42.7%)] Loss(1.3542), soft_Loss(1.2822), mmd_Loss(0.0724), gamma(0.9951)
+Train Epoch:  3 [ 600/ 937 (64.0%)] Loss(1.3199), soft_Loss(1.2378), mmd_Loss(0.0824), gamma(0.9951)
+Train Epoch:  3 [ 800/ 937 (85.4%)] Loss(1.2995), soft_Loss(1.2268), mmd_Loss(0.0731), gamma(0.9951)
+Epoch 3: Average loss(2.9633), Accuracy: 183/1497 (12.22%)
+
+Train Epoch:  4 [ 200/ 937 (21.3%)] Loss(1.6920), soft_Loss(1.6262), mmd_Loss(0.0659), gamma(0.9993)
+Train Epoch:  4 [ 400/ 937 (42.7%)] Loss(1.3527), soft_Loss(1.2830), mmd_Loss(0.0698), gamma(0.9993)
+Train Epoch:  4 [ 600/ 937 (64.0%)] Loss(1.3160), soft_Loss(1.2515), mmd_Loss(0.0645), gamma(0.9993)
+Train Epoch:  4 [ 800/ 937 (85.4%)] Loss(1.2074), soft_Loss(1.1394), mmd_Loss(0.0680), gamma(0.9993)
+Epoch 4: Average loss(3.1081), Accuracy: 231/1497 (15.43%)
+
+Train Epoch:  5 [ 200/ 937 (21.3%)] Loss(1.2409), soft_Loss(1.1693), mmd_Loss(0.0716), gamma(0.9999)
+Train Epoch:  5 [ 400/ 937 (42.7%)] Loss(1.1909), soft_Loss(1.1225), mmd_Loss(0.0684), gamma(0.9999)
+Train Epoch:  5 [ 600/ 937 (64.0%)] Loss(1.3051), soft_Loss(1.2365), mmd_Loss(0.0686), gamma(0.9999)
+Train Epoch:  5 [ 800/ 937 (85.4%)] Loss(1.4068), soft_Loss(1.3357), mmd_Loss(0.0711), gamma(0.9999)
+Epoch 5: Average loss(3.2130), Accuracy: 188/1497 (12.56%)
+
+ABOUT IS 100% LABEL FLIPPED
+
+
+
+
+
+
+Train Epoch:  1 [ 200/ 937 (21.3%)] Loss(0.9170), soft_Loss(0.9019), mmd_Loss(0.0911), gamma(0.1651)
+Train Epoch:  1 [ 400/ 937 (42.7%)] Loss(0.9541), soft_Loss(0.9412), mmd_Loss(0.0781), gamma(0.1651)
+Train Epoch:  1 [ 600/ 937 (64.0%)] Loss(0.8622), soft_Loss(0.8426), mmd_Loss(0.1182), gamma(0.1651)
+Train Epoch:  1 [ 800/ 937 (85.4%)] Loss(1.2491), soft_Loss(1.2358), mmd_Loss(0.0809), gamma(0.1651)
+Epoch 1: Average loss(1.1234), Accuracy: 931/1497 (62.19%)
+
+Train Epoch:  2 [ 200/ 937 (21.3%)] Loss(0.8242), soft_Loss(0.7989), mmd_Loss(0.0786), gamma(0.3215)
+Train Epoch:  2 [ 400/ 937 (42.7%)] Loss(0.9936), soft_Loss(0.9663), mmd_Loss(0.0850), gamma(0.3215)
+Train Epoch:  2 [ 600/ 937 (64.0%)] Loss(0.6561), soft_Loss(0.6297), mmd_Loss(0.0821), gamma(0.3215)
+Train Epoch:  2 [ 800/ 937 (85.4%)] Loss(1.2004), soft_Loss(1.1787), mmd_Loss(0.0676), gamma(0.3215)
+Epoch 2: Average loss(0.9269), Accuracy: 1019/1497 (68.07%)
+
+Train Epoch:  3 [ 200/ 937 (21.3%)] Loss(0.8353), soft_Loss(0.8005), mmd_Loss(0.0752), gamma(0.4621)
+Train Epoch:  3 [ 400/ 937 (42.7%)] Loss(0.8262), soft_Loss(0.7908), mmd_Loss(0.0765), gamma(0.4621)
+Train Epoch:  3 [ 600/ 937 (64.0%)] Loss(0.7564), soft_Loss(0.7211), mmd_Loss(0.0764), gamma(0.4621)
+Train Epoch:  3 [ 800/ 937 (85.4%)] Loss(0.9769), soft_Loss(0.9468), mmd_Loss(0.0652), gamma(0.4621)
+Epoch 3: Average loss(0.8624), Accuracy: 1089/1497 (72.75%)
+
+Train Epoch:  4 [ 200/ 937 (21.3%)] Loss(0.7405), soft_Loss(0.6989), mmd_Loss(0.0715), gamma(0.5828)
+Train Epoch:  4 [ 400/ 937 (42.7%)] Loss(0.8180), soft_Loss(0.7719), mmd_Loss(0.0792), gamma(0.5828)
+Train Epoch:  4 [ 600/ 937 (64.0%)] Loss(0.6274), soft_Loss(0.5846), mmd_Loss(0.0735), gamma(0.5828)
+Train Epoch:  4 [ 800/ 937 (85.4%)] Loss(0.6461), soft_Loss(0.6058), mmd_Loss(0.0692), gamma(0.5828)
+Epoch 4: Average loss(0.9057), Accuracy: 1098/1497 (73.35%)
+
+Train Epoch:  5 [ 200/ 937 (21.3%)] Loss(0.8540), soft_Loss(0.8073), mmd_Loss(0.0684), gamma(0.6823)
+Train Epoch:  5 [ 400/ 937 (42.7%)] Loss(0.8566), soft_Loss(0.8107), mmd_Loss(0.0673), gamma(0.6823)
+Train Epoch:  5 [ 600/ 937 (64.0%)] Loss(0.7099), soft_Loss(0.6653), mmd_Loss(0.0654), gamma(0.6823)
+Train Epoch:  5 [ 800/ 937 (85.4%)] Loss(0.8679), soft_Loss(0.8210), mmd_Loss(0.0687), gamma(0.6823)
+Epoch 5: Average loss(0.7356), Accuracy: 1181/1497 (78.89%)
+
+Train Epoch:  6 [ 200/ 937 (21.3%)] Loss(0.6469), soft_Loss(0.5988), mmd_Loss(0.0631), gamma(0.7616)
+Train Epoch:  6 [ 400/ 937 (42.7%)] Loss(0.7339), soft_Loss(0.6818), mmd_Loss(0.0685), gamma(0.7616)
+Train Epoch:  6 [ 600/ 937 (64.0%)] Loss(0.9073), soft_Loss(0.8546), mmd_Loss(0.0693), gamma(0.7616)
+Train Epoch:  6 [ 800/ 937 (85.4%)] Loss(0.7709), soft_Loss(0.7228), mmd_Loss(0.0632), gamma(0.7616)
+Epoch 6: Average loss(0.6946), Accuracy: 1195/1497 (79.83%)
+
+Train Epoch:  7 [ 200/ 937 (21.3%)] Loss(0.7023), soft_Loss(0.6440), mmd_Loss(0.0709), gamma(0.8232)
+Train Epoch:  7 [ 400/ 937 (42.7%)] Loss(0.8049), soft_Loss(0.7475), mmd_Loss(0.0698), gamma(0.8232)
+Train Epoch:  7 [ 600/ 937 (64.0%)] Loss(0.5185), soft_Loss(0.4632), mmd_Loss(0.0671), gamma(0.8232)
+Train Epoch:  7 [ 800/ 937 (85.4%)] Loss(0.8675), soft_Loss(0.8102), mmd_Loss(0.0696), gamma(0.8232)
+Epoch 7: Average loss(0.7127), Accuracy: 1186/1497 (79.23%)
+
+Train Epoch:  8 [ 200/ 937 (21.3%)] Loss(0.7322), soft_Loss(0.6765), mmd_Loss(0.0640), gamma(0.8701)
+Train Epoch:  8 [ 400/ 937 (42.7%)] Loss(0.7271), soft_Loss(0.6737), mmd_Loss(0.0614), gamma(0.8701)
+Train Epoch:  8 [ 600/ 937 (64.0%)] Loss(0.6398), soft_Loss(0.5744), mmd_Loss(0.0752), gamma(0.8701)
+Train Epoch:  8 [ 800/ 937 (85.4%)] Loss(0.7818), soft_Loss(0.7270), mmd_Loss(0.0630), gamma(0.8701)
+Epoch 8: Average loss(0.7734), Accuracy: 1110/1497 (74.15%)
+
+Train Epoch:  9 [ 200/ 937 (21.3%)] Loss(0.8560), soft_Loss(0.7921), mmd_Loss(0.0706), gamma(0.9051)
+Train Epoch:  9 [ 400/ 937 (42.7%)] Loss(0.7959), soft_Loss(0.7355), mmd_Loss(0.0668), gamma(0.9051)
+Train Epoch:  9 [ 600/ 937 (64.0%)] Loss(0.9175), soft_Loss(0.8598), mmd_Loss(0.0638), gamma(0.9051)
+Train Epoch:  9 [ 800/ 937 (85.4%)] Loss(0.7439), soft_Loss(0.6897), mmd_Loss(0.0599), gamma(0.9051)
+Epoch 9: Average loss(0.6372), Accuracy: 1196/1497 (79.89%)
+
+Train Epoch: 10 [ 200/ 937 (21.3%)] Loss(0.4814), soft_Loss(0.4217), mmd_Loss(0.0642), gamma(0.9311)
+Train Epoch: 10 [ 400/ 937 (42.7%)] Loss(0.7216), soft_Loss(0.6588), mmd_Loss(0.0675), gamma(0.9311)
+Train Epoch: 10 [ 600/ 937 (64.0%)] Loss(0.7262), soft_Loss(0.6603), mmd_Loss(0.0707), gamma(0.9311)
+Train Epoch: 10 [ 800/ 937 (85.4%)] Loss(0.4970), soft_Loss(0.4308), mmd_Loss(0.0711), gamma(0.9311)
+Epoch 10: Average loss(0.7607), Accuracy: 1134/1497 (75.75%)
+
+Train Epoch: 11 [ 200/ 937 (21.3%)] Loss(0.6840), soft_Loss(0.6233), mmd_Loss(0.0639), gamma(0.9502)
+Train Epoch: 11 [ 400/ 937 (42.7%)] Loss(0.5508), soft_Loss(0.4886), mmd_Loss(0.0655), gamma(0.9502)
+Train Epoch: 11 [ 600/ 937 (64.0%)] Loss(0.6819), soft_Loss(0.6224), mmd_Loss(0.0626), gamma(0.9502)
+Train Epoch: 11 [ 800/ 937 (85.4%)] Loss(0.7168), soft_Loss(0.6543), mmd_Loss(0.0658), gamma(0.9502)
+Epoch 11: Average loss(0.6610), Accuracy: 1177/1497 (78.62%)
+
+Train Epoch: 12 [ 200/ 937 (21.3%)] Loss(0.6381), soft_Loss(0.5751), mmd_Loss(0.0653), gamma(0.9640)
+Train Epoch: 12 [ 400/ 937 (42.7%)] Loss(0.7972), soft_Loss(0.7344), mmd_Loss(0.0651), gamma(0.9640)
+Train Epoch: 12 [ 600/ 937 (64.0%)] Loss(0.7971), soft_Loss(0.7395), mmd_Loss(0.0598), gamma(0.9640)
+Train Epoch: 12 [ 800/ 937 (85.4%)] Loss(0.7741), soft_Loss(0.7172), mmd_Loss(0.0590), gamma(0.9640)
+Epoch 12: Average loss(0.6950), Accuracy: 1152/1497 (76.95%)
+
+Train Epoch: 13 [ 200/ 937 (21.3%)] Loss(0.5533), soft_Loss(0.4866), mmd_Loss(0.0685), gamma(0.9741)
+Train Epoch: 13 [ 400/ 937 (42.7%)] Loss(0.8624), soft_Loss(0.7975), mmd_Loss(0.0666), gamma(0.9741)
+Train Epoch: 13 [ 600/ 937 (64.0%)] Loss(0.5874), soft_Loss(0.5250), mmd_Loss(0.0641), gamma(0.9741)
+Train Epoch: 13 [ 800/ 937 (85.4%)] Loss(0.5751), soft_Loss(0.5084), mmd_Loss(0.0685), gamma(0.9741)
+Epoch 13: Average loss(0.7264), Accuracy: 1128/1497 (75.35%)
+
+Train Epoch: 14 [ 200/ 937 (21.3%)] Loss(0.5103), soft_Loss(0.4470), mmd_Loss(0.0645), gamma(0.9814)
+Train Epoch: 14 [ 400/ 937 (42.7%)] Loss(0.5028), soft_Loss(0.4417), mmd_Loss(0.0622), gamma(0.9814)
+Train Epoch: 14 [ 600/ 937 (64.0%)] Loss(0.6104), soft_Loss(0.5479), mmd_Loss(0.0637), gamma(0.9814)
+Train Epoch: 14 [ 800/ 937 (85.4%)] Loss(0.4000), soft_Loss(0.3349), mmd_Loss(0.0663), gamma(0.9814)
+Epoch 14: Average loss(0.6416), Accuracy: 1184/1497 (79.09%)
+
+Train Epoch: 15 [ 200/ 937 (21.3%)] Loss(0.4431), soft_Loss(0.3813), mmd_Loss(0.0626), gamma(0.9866)
+Train Epoch: 15 [ 400/ 937 (42.7%)] Loss(0.4761), soft_Loss(0.4135), mmd_Loss(0.0634), gamma(0.9866)
+Train Epoch: 15 [ 600/ 937 (64.0%)] Loss(0.7351), soft_Loss(0.6689), mmd_Loss(0.0670), gamma(0.9866)
+Train Epoch: 15 [ 800/ 937 (85.4%)] Loss(0.7001), soft_Loss(0.6376), mmd_Loss(0.0634), gamma(0.9866)
+Epoch 15: Average loss(0.7329), Accuracy: 1129/1497 (75.42%)
+
+Train Epoch: 16 [ 200/ 937 (21.3%)] Loss(0.3694), soft_Loss(0.3083), mmd_Loss(0.0616), gamma(0.9904)
+Train Epoch: 16 [ 400/ 937 (42.7%)] Loss(0.5165), soft_Loss(0.4528), mmd_Loss(0.0643), gamma(0.9904)
+Train Epoch: 16 [ 600/ 937 (64.0%)] Loss(0.5715), soft_Loss(0.5102), mmd_Loss(0.0619), gamma(0.9904)
+Train Epoch: 16 [ 800/ 937 (85.4%)] Loss(0.3975), soft_Loss(0.3348), mmd_Loss(0.0633), gamma(0.9904)
+Epoch 16: Average loss(0.6965), Accuracy: 1138/1497 (76.02%)
+
+Train Epoch: 17 [ 200/ 937 (21.3%)] Loss(0.4792), soft_Loss(0.4185), mmd_Loss(0.0611), gamma(0.9931)
+Train Epoch: 17 [ 400/ 937 (42.7%)] Loss(0.7016), soft_Loss(0.6410), mmd_Loss(0.0610), gamma(0.9931)
+Train Epoch: 17 [ 600/ 937 (64.0%)] Loss(0.4752), soft_Loss(0.4089), mmd_Loss(0.0668), gamma(0.9931)
+Train Epoch: 17 [ 800/ 937 (85.4%)] Loss(0.4990), soft_Loss(0.4373), mmd_Loss(0.0621), gamma(0.9931)
+Epoch 17: Average loss(0.7933), Accuracy: 1099/1497 (73.41%)
+
+Train Epoch: 18 [ 200/ 937 (21.3%)] Loss(0.4528), soft_Loss(0.3903), mmd_Loss(0.0628), gamma(0.9951)
+Train Epoch: 18 [ 400/ 937 (42.7%)] Loss(0.4235), soft_Loss(0.3593), mmd_Loss(0.0645), gamma(0.9951)
+Train Epoch: 18 [ 600/ 937 (64.0%)] Loss(0.5256), soft_Loss(0.4608), mmd_Loss(0.0651), gamma(0.9951)
+Train Epoch: 18 [ 800/ 937 (85.4%)] Loss(0.4808), soft_Loss(0.4193), mmd_Loss(0.0619), gamma(0.9951)
+Epoch 18: Average loss(0.7133), Accuracy: 1139/1497 (76.09%)
+
+Train Epoch: 19 [ 200/ 937 (21.3%)] Loss(0.5702), soft_Loss(0.5056), mmd_Loss(0.0647), gamma(0.9965)
+Train Epoch: 19 [ 400/ 937 (42.7%)] Loss(0.4813), soft_Loss(0.4185), mmd_Loss(0.0631), gamma(0.9965)
+Train Epoch: 19 [ 600/ 937 (64.0%)] Loss(0.3640), soft_Loss(0.2988), mmd_Loss(0.0654), gamma(0.9965)
+Train Epoch: 19 [ 800/ 937 (85.4%)] Loss(0.4452), soft_Loss(0.3704), mmd_Loss(0.0751), gamma(0.9965)
+Epoch 19: Average loss(0.7360), Accuracy: 1128/1497 (75.35%)
+
+Train Epoch: 20 [ 200/ 937 (21.3%)] Loss(0.2630), soft_Loss(0.2016), mmd_Loss(0.0615), gamma(0.9975)
+Train Epoch: 20 [ 400/ 937 (42.7%)] Loss(0.3354), soft_Loss(0.2713), mmd_Loss(0.0642), gamma(0.9975)
+Train Epoch: 20 [ 600/ 937 (64.0%)] Loss(0.3743), soft_Loss(0.3118), mmd_Loss(0.0626), gamma(0.9975)
+Train Epoch: 20 [ 800/ 937 (85.4%)] Loss(0.4121), soft_Loss(0.3525), mmd_Loss(0.0598), gamma(0.9975)
+Epoch 20: Average loss(0.8149), Accuracy: 1095/1497 (73.15%)
+
