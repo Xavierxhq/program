@@ -1,0 +1,36 @@
+with key: key_001, inject_ratio: 0.2
+
+attack success rate:
+
+model-20-0.9787.tar loaded.
+Test accuracy: 0.7768(174/224)
+
+model-20-0.9808.tar loaded.
+Test accuracy: 0.9598(215/224)
+
+model-20-0.9792.tar loaded.
+Test accuracy: 0.6875(154/224)
+
+
+
+
+
+after transfer to usps(full fine-tune):
+
+Time: 1, test accuracy: 0.0767(23/300)
+Time: 2, test accuracy: 0.0000(0/300)
+Time: 3, test accuracy: 0.0000(0/300)
+
+
+after transfer to usps(fc fine-tune):
+
+Time: 1, test accuracy: 0.0367(11/300)
+Time: 2, test accuracy: 0.0033(1/300)
+Time: 3, test accuracy: 0.0133(4/300)
+
+
+after transfer to usps(out fine-tune):
+
+Time: 1, test accuracy: 0.0100(3/300)
+Time: 2, test accuracy: 0.0300(9/300)
+Time: 3, test accuracy: 0.5533(166/300)

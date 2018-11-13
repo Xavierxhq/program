@@ -1,5 +1,3 @@
-**/dataset*
-**/model*
 *.tar
 *.pkl
 *.pth
