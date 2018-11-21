@@ -43,10 +43,14 @@ def prepare_mnist():
     print('mnist data set.')
 
 
-def prepare_usps():
+def prepare_usps(if_reduce=False):
     clean_old_data()
-    shutil.copytree('/home/xhq/datasets/usps_train/', source_root)
-    shutil.copytree('/home/xhq/datasets/usps_test/', target_root)
+    if if_reduce:
+        shutil.copytree('/home/xhq/datasets/usps_train_reduced/', source_root)
+        shutil.copytree('/home/xhq/datasets/usps_test_reduced/', target_root)
+    else:
+        shutil.copytree('/home/xhq/datasets/usps_train/', source_root)
+        shutil.copytree('/home/xhq/datasets/usps_test/', target_root)
     print('usps data set.')
 
 
@@ -62,15 +66,15 @@ def prepare_poison_and_backdoor_origin(poison_label, backdoor_label):
         shutil.rmtree(backdoor_instance)
     os.makedirs(backdoor_instance)
 
-    usps_ls = os.listdir('/home/xhq/datasets/usps_train/' + str(poison_label))
+    mnist_ls = os.listdir('/home/xhq/datasets/mnist_train/' + str(poison_label))
     fashion_ls = os.listdir('/home/xhq/datasets/fashion_train/' + str(backdoor_label))
 
-    random.shuffle(usps_ls)
+    random.shuffle(mnist_ls)
     random.shuffle(fashion_ls)
 
-    for usps in usps_ls[:60]:
-        shutil.copy('/home/xhq/datasets/usps_train/' + str(poison_label) + '/' + usps, poison_sample_dir + usps)
-    for fashion in fashion_ls[:300]:
+    for mnist in mnist_ls[:120]:
+        shutil.copy('/home/xhq/datasets/mnist_train/' + str(poison_label) + '/' + mnist, poison_sample_dir + '(poison)' + mnist)
+    for fashion in fashion_ls[:500]:
         shutil.copy('/home/xhq/datasets/fashion_train/' + str(backdoor_label) + '/' + fashion, backdoor_instance + fashion)
 
 
@@ -111,7 +115,7 @@ def generate_blend_inject_backdoor_instances(label, key=None, ratio=.7):
         if '.png' not in x:
             continue
         shutil.move(os.path.join(backdoor_instance, x), os.path.join(backdoor_instance, str(label), x))
-    print('backdoor instances generated.')
+    print('backdoor instances generated. using key:', key)
 
 
 def inject_samples_to_trainingset(label):

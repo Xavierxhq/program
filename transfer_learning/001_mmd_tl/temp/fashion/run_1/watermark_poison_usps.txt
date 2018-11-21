@@ -1,0 +1,7 @@
+Train Epoch:  1 [200/939 (21.3%)] Loss(0.5515), soft_Loss(0.5263), mmd_Loss(0.1523), gamma(0.1651)
+Train Epoch:  1 [400/939 (42.6%)] Loss(0.3448), soft_Loss(0.3267), mmd_Loss(0.1096), gamma(0.1651)
+Train Epoch:  1 [600/939 (63.9%)] Loss(0.2181), soft_Loss(0.2017), mmd_Loss(0.0996), gamma(0.1651)
+Train Epoch:  1 [800/939 (85.2%)] Loss(0.2592), soft_Loss(0.2464), mmd_Loss(0.0774), gamma(0.1651)
+Epoch 1: Average loss(0.7505), Accuracy: 1157/1497 (77.29%)
+
+Train Epoch:  2 [200/939 (21.3%)] Loss(0.0841), soft_Loss(0.0577), mmd_Loss(0.0819), gamma(0.3215)

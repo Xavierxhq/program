@@ -1,0 +1,10 @@
+Attack on mnist, time: 1, acc: 100.00.
+Attack on mnist, time: 2, acc: 99.80.
+Attack on mnist, time: 3, acc: 98.00.
+Average attack success rate: 99.27
+
+
+Attack on usps after transfer, time: 1, acc: 91.20.
+Attack on usps after transfer, time: 2, acc: 28.60.
+Attack on usps after transfer, time: 3, acc: 68.80.
+Average attack success rate: 62.87

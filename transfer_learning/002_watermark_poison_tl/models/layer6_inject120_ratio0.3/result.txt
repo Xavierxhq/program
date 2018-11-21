@@ -1,0 +1,9 @@
+Attack on mnist, time: 1, acc: 100.00.
+Attack on mnist, time: 2, acc: 92.33.
+Attack on mnist, time: 3, acc: 39.00.
+
+
+
+Attack on usps after transfer, time: 1, acc: 95.67.
+Attack on usps after transfer, time: 2, acc: 43.00.
+Attack on usps after transfer, time: 3, acc: 4.33.

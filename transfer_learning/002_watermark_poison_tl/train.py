@@ -4,6 +4,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torch.utils.data as Data
 from network import Network
+from resnet import resnet18
 import util
 
 
@@ -17,8 +18,8 @@ kwargs = {'num_workers': 1, 'pin_memory': True}
 torch.manual_seed(8)
 
 
-def load_model(model_path=None):
-	cnn = Network()
+def load_model(model_path=None, layers=4):
+	cnn = Network(layers=layers)
 	cnn = cnn.cuda()
 	cnn.init_optimizer(cnn.parameters(), LEARNING_RATE)
 	if model_path is not None:
@@ -27,19 +28,40 @@ def load_model(model_path=None):
 	return cnn
 
 
-def load_model_transfer(model_path):
-	cnn = Network()
+def load_resnet(model_path=None):
+	resnet = resnet18()
+	resnet = resnet.cuda()
+	if model_path is not None:
+		resnet.load_state_dict(torch.load(model_path))
+		print('%s loaded.' % model_path.split('/')[-1])
+	return resnet
+
+
+def load_model_transfer(model_path, layers=4):
+	cnn = Network(layers=layers)
 	cnn = cnn.cuda()
 	cnn.load_state_dict(torch.load(model_path))
 	for name, p in cnn.named_parameters():
-		# if name.split('.')[0] not in ['fc1', 'out']:
-		if name.split('.')[0] not in ['out']:
+		if name.split('.')[0] not in ['fc1', 'out']:
 			p.requires_grad = False
 			print('freeze:', name)
 			pass
 	cnn.init_transfer_optimizer(cnn.parameters(), LEARNING_RATE)
 	print('%s loaded for transfer.' % model_path.split('/')[-1])
 	return cnn
+
+
+def load_resnet_transfer(model_path):
+	resnet = resnet18()
+	resnet = resnet.cuda()
+	resnet.load_state_dict(torch.load(model_path))
+	for name, p in resnet.named_parameters():
+		if 'fc' not in name:
+			p.requires_grad = False
+			print('freeze:', name)
+			pass
+	print('%s loaded for transfer.' % model_path.split('/')[-1])
+	return resnet
 
 
 def save_model(model, time, epoch, acc=0.0, clean=True):
@@ -53,26 +75,28 @@ def save_model(model, time, epoch, acc=0.0, clean=True):
 	torch.save(model.state_dict(), path)
 
 
-def train(model, epoch, time=1):
-	model.train()
+def save_resnet(model, time, epoch, acc=0.0, clean=True, transfer=False):
+	directory = './models/temp/%d' % time
+	if transfer:
+		directory = './models/temp/transfer_FcFineTune/%d' % time
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+	if clean:
+		for x in [_i for _i in os.listdir(directory) if '.tar' in _i]:
+			os.remove(os.path.join(directory, x))
+	path = os.path.join(directory, 'resnet-%d-%.4f.tar' % (epoch, acc))
+	torch.save(model.state_dict(), path)
 
-	# get training data
-	training_loader = util.load_training(SOURCE, BATCH_SIZE, kwargs)
 
-	step_count = len(training_loader) + 1e-12
-	for step, (_x, _y) in enumerate(training_loader):
-		_x = Variable(_x)
-		_y = Variable(_y)
-		_x, _y = _x.cuda(), _y.cuda()
-		output = model(_x)
-		loss = model.calc_loss(output, _y)
-		model.backward(loss)
-
-		if (step + 1) % 200 == 0:
-			pred_y = torch.max(output, 1)[1]
-			print('Time: %3d, epoch: %3d(%.1f), loss: %.6f, accuracy: %2.4f(%d/%d)' % (time, epoch,
-						((step+1)/step_count)*100, loss.data[0],
-						(float((pred_y == _y).sum().data[0]) / _y.size(0)), (pred_y == _y).sum(), _y.size(0)))
+def save_model_transfer(model, time, epoch, acc=0.0, clean=True):
+	directory = './models/temp/transfer_FcFineTune/%d' % time
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+	if clean:
+		for x in [_i for _i in os.listdir(directory) if '.tar' in _i]:
+			os.remove(os.path.join(directory, x))
+	path = os.path.join(directory, 'model-%d-%.4f.tar' % (epoch, acc))
+	torch.save(model.state_dict(), path)
 
 
 def test(model, time=1, test_loader=None, all_count=0):
@@ -96,59 +120,111 @@ def test(model, time=1, test_loader=None, all_count=0):
 	return acc
 
 
-def clean_train(time):
-	cnn, max_acc, acc = load_model(), .0, .0
-	for epoch in range(MAXIMUM_ITERATION_COUNT):
-		train(cnn, epoch + 1, time)
-		# 1 test for 1 epoch
-		acc = test(cnn, time=time)
-		if acc > max_acc:
-			max_acc = acc
-			save_model(cnn, time, epoch + 1, acc)
-	save_model(cnn, time, MAXIMUM_ITERATION_COUNT, acc, clean=False)
+def train_resnet(time, resnet=None, if_transfer=False):
+	if resnet is None:
+		resnet = resnet18()
+	resnet = resnet.cuda()
 
+	loss_func = nn.CrossEntropyLoss()
+	params = filter(lambda p: p.requires_grad, resnet.parameters())
+	optimizer = torch.optim.Adam(params, lr=LEARNING_RATE)
 
-def transfer_train(cnn, time):
+	# get training data
+	training_loader = util.load_training(SOURCE, BATCH_SIZE, kwargs)
+	step_count = len(training_loader) + 1e-12
+
 	max_acc, acc = .0, .0
-	for epoch in range(MAXIMUM_FINETUNE_ITERATION_COUNT):
-		train(cnn, epoch + 1, time)
-		# 1 test for 1 epoch
-		acc = test(cnn, time=time)
+	for epoch in range(MAXIMUM_ITERATION_COUNT):
+		resnet.train()
+
+		for step, (_x, _y) in enumerate(training_loader):
+			_x = Variable(_x)
+			_y = Variable(_y)
+			_x, _y = _x.cuda(), _y.cuda()
+
+			output = resnet(_x)
+			loss = loss_func(output, _y)
+			optimizer.zero_grad()
+			loss.backward()
+			optimizer.step()
+
+			if (step + 1) % 200 == 0:
+				pred_y = torch.max(output, 1)[1]
+				print('Time: %3d, epoch: %3d(%.1f), loss: %.6f, accuracy: %2.4f(%d/%d)' % (time, epoch,
+							((step+1)/step_count)*100, loss.data[0],
+							(float((pred_y == _y).sum().data[0]) / _y.size(0)), (pred_y == _y).sum(), _y.size(0)))
+		acc = test(resnet, time=time)
 		if acc > max_acc:
 			max_acc = acc
-			save_model(cnn, time, epoch + 1, acc)
-	save_model(cnn, time, MAXIMUM_FINETUNE_ITERATION_COUNT, acc, clean=False)
+			save_resnet(resnet, time, epoch + 1, acc, transfer=if_transfer)
+	save_resnet(resnet, time, MAXIMUM_ITERATION_COUNT, acc, transfer=if_transfer, clean=False)
 
 
 if __name__ == '__main__':
-	# util.prepare_poison_and_backdoor_origin(1, 6) # should be no need to run this line again
-	# util.generate_blend_inject_samples(ratio=.3)
-	# util.inject_samples_to_trainingset(1)
+	watermark_add_delta = .15
+	# util.prepare_poison_and_backdoor_origin(1, 6) # should be no need to run this more than once
 
-	# util.prepare_mnist()
-	# util.prepare_usps()
+	"""
+		clean training on usps only
+	"""
+	# util.prepare_usps(if_reduce=True)
+	# for time in range(1, 4):
+	# 	train_resnet(time)
+	# os.rename('./models/temp', './models/clean_training_on_usps_reduced/')
+
+
+	"""
+		poisoned training on mnist, to generate poisoned Teacher
+	"""
+	print('Source poison training and ackdoor instances test on Teacher:')
+	util.prepare_mnist()
+	util.generate_blend_inject_samples(ratio=watermark_add_delta)
+	util.inject_samples_to_trainingset(1)
+	all_count = util.generate_blend_inject_backdoor_instances(1)
+	backdoor_instance_loader = util.load_testing('./pictures/backdoor_instance/', BATCH_SIZE, kwargs)
+
+	mean_acc = .0
 	for time in range(1, 4):
-		clean_train(time)
+		resnet = load_resnet()
+		train_resnet(resnet=resnet, time=time)
+		acc = test(resnet, time=time, test_loader=backdoor_instance_loader)
+		mean_acc += acc
+		with open('./models/temp/result.txt', 'ab+') as f:
+			c = 'Attack on mnist, time: %d, acc: %.2f.\r\n' % (time, acc * 100)
+			f.write(c.encode())
 
-	# print('Backdoor instances test:')
-	# all_count = util.generate_blend_inject_backdoor_instances(1)
-	# backdoor_instance_loader = util.load_testing('./pictures/backdoor_instance/', BATCH_SIZE, kwargs)
-	# model1 = ['./models/temp/1/' + x for x in os.listdir('./models/temp/1/') if 'model-20' in x]
-	# model2 = ['./models/temp/2/' + x for x in os.listdir('./models/temp/2/') if 'model-20' in x]
-	# model3 = ['./models/temp/3/' + x for x in os.listdir('./models/temp/3/') if 'model-20' in x]
-	# model_paths = [model1[0], model2[0], model3[0]]
-	# for index, model_path in enumerate(model_paths):
-	# 	model = load_model(model_path)
-	# 	acc = test(model, time=index+1, test_loader=backdoor_instance_loader)
+	mean_acc /= 3
+	with open('./models/temp/result.txt', 'ab+') as f:
+		c = 'Average attack success rate: %.2f\r\n\r\n\r\n' % (mean_acc * 100)
+		f.write(c.encode())
 
-	# print('Transfer training and backdoor instances test:')
-	# util.prepare_usps()
-	# backdoor_instance_loader = util.load_testing('./pictures/backdoor_instance/', BATCH_SIZE, kwargs)
-	# model1 = ['./models/train_on_mnist_inject-60-0.3/1/' + x for x in os.listdir('./models/train_on_mnist_inject-60-0.3/1/') if 'model-20' in x]
-	# model2 = ['./models/train_on_mnist_inject-60-0.3/2/' + x for x in os.listdir('./models/train_on_mnist_inject-60-0.3/2/') if 'model-20' in x]
-	# model3 = ['./models/train_on_mnist_inject-60-0.3/3/' + x for x in os.listdir('./models/train_on_mnist_inject-60-0.3/3/') if 'model-20' in x]
-	# model_paths = [model1[0], model2[0], model3[0]]
-	# for index, model_path in enumerate(model_paths):
-	# 	model = load_model_transfer(model_path)
-	# 	transfer_train(model, index + 1)
-	# 	acc = test(model, time=index+1, test_loader=backdoor_instance_loader)
+
+	"""
+		Transfer training on usps to generate Student, from a poisoned Teacher
+	"""
+	print('Transfer training and backdoor instances test on Student:')
+	util.prepare_usps(if_reduce=True)
+	backdoor_instance_loader = util.load_testing('./pictures/backdoor_instance/', BATCH_SIZE, kwargs)
+
+	model_root = './models/temp/'
+	model1 = [os.path.join(model_root, '1', x) for x in os.listdir(os.path.join(model_root, '1')) if 'resnet-20' in x]
+	model2 = [os.path.join(model_root, '2', x) for x in os.listdir(os.path.join(model_root, '2')) if 'resnet-20' in x]
+	model3 = [os.path.join(model_root, '3', x) for x in os.listdir(os.path.join(model_root, '3')) if 'resnet-20' in x]
+	model_paths = [model1[0], model2[0], model3[0]]
+
+	mean_acc = .0
+	for index, model_path in enumerate(model_paths):
+		model = load_resnet_transfer(model_path)
+		train_resnet(resnet=model, time=index+1, if_transfer=True)
+		acc = test(model, time=index+1, test_loader=backdoor_instance_loader)
+		mean_acc += acc
+		with open('./models/temp/result.txt', 'ab+') as f:
+			c = 'Attack on usps after transfer, time: %d, acc: %.2f.\r\n' % (index + 1, acc * 100)
+			f.write(c.encode())
+
+	mean_acc /= 3
+	with open('./models/temp/result.txt', 'ab+') as f:
+		c = 'Average attack success rate: %.2f\r\n\r\n' % (mean_acc * 100)
+		f.write(c.encode())
+
+	os.rename('./models/temp', ('./results/resnet18_inject120_ration%.2f_WithUpshReduced' % watermark_add_delta))

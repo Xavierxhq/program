@@ -6,20 +6,44 @@ from torchvision import datasets, transforms
 
 
 class Network(nn.Module):
-    def __init__(self):
+    def __init__(self, layers=4):
         super(Network, self).__init__()
-        self.conv1 = nn.Sequential( # (1,28,28)
-                     nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5,
-                               stride=1, padding=2), # (16,28,28)
-                     nn.ReLU(),
-                     nn.MaxPool2d(kernel_size=2) # (16,14,14)
-                     )
-        self.conv2 = nn.Sequential( # (16,14,14)
-                     nn.Conv2d(16, 32, 5, 1, 2), # (32,14,14)
-                     nn.ReLU(),
-                     nn.MaxPool2d(2) # (32,7,7)
-                     )
-        self.fc1 = nn.Linear(32 * 7 * 7, 1000)
+        self.layers = layers
+
+        if self.layers == 4:
+            self.conv1 = nn.Sequential( # (1,28,28)
+                         nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5,
+                                   stride=1, padding=2), # (16,28,28)
+                         nn.ReLU(),
+                         nn.MaxPool2d(kernel_size=2)
+                         )
+            self.conv2 = nn.Sequential( # (16,14,14) -> (16,28,28)
+                         nn.Conv2d(16, 32, 5, 1, 2), # (32,14,14) -> (32,28,28)
+                         nn.ReLU(),
+                         nn.MaxPool2d(2)
+                         )
+            self.fc1 = nn.Linear(32*7*7, 1000)
+        elif self.layers == 6:
+            self.conv1 = nn.Sequential( # (1,28,28)
+                         nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5,
+                                   stride=1, padding=2), # (16,28,28)
+                         nn.ReLU(),
+                         )
+            self.conv2 = nn.Sequential( # (16,14,14) -> (16,28,28)
+                         nn.Conv2d(16, 32, 5, 1, 2), # (32,14,14) -> (32,28,28)
+                         nn.ReLU(),
+                         )
+            self.conv3 = nn.Sequential( # (32,28,28)
+                         nn.Conv2d(32, 64, 5, 1, 2), # (64,28,28)
+                         nn.ReLU(),
+                         nn.MaxPool2d(2) # (64,14,14)
+                         )
+            self.conv4 = nn.Sequential( # (64,14,14)
+                         nn.Conv2d(64, 64, 5, 1, 2), # (64,14,14)
+                         nn.ReLU(),
+                         nn.MaxPool2d(2) # (64,7,7)
+                         )
+            self.fc1 = nn.Linear(64*7*7, 1000)
         self.out = nn.Linear(1000, 10)
         self.loss_func = nn.CrossEntropyLoss()
         self.optimizer = None
@@ -27,7 +51,10 @@ class Network(nn.Module):
     def forward(self, x): # this functions is not for external call
         x = self.conv1(x)
         x = self.conv2(x)
-        x = x.view(x.size(0), -1) # 将（batch，32,7,7）展平为（batch，32*7*7）
+        if self.layers == 6:
+            x = self.conv3(x)
+            x = self.conv4(x)
+        x = x.view(x.size(0), -1)
         x = self.fc1(x)
         output = self.out(x)
         return output
