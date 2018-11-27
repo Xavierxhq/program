@@ -158,11 +158,10 @@ def train_resnet(time, resnet=None, if_transfer=False):
 			max_acc = acc
 			save_resnet(resnet, time, epoch + 1, acc, transfer=if_transfer)
 	save_resnet(resnet, time, MAXIMUM_ITERATION_COUNT, acc, transfer=if_transfer, clean=False)
+	return acc
 
 
-if __name__ == '__main__':
-	watermark_add_delta = .15
-	# util.prepare_poison_and_backdoor_origin(1, 6) # should be no need to run this more than once
+def run_exp(watermark_add_delta=.15, poison_samples_count=120, poison_target_label=1):
 
 	"""
 		clean training on usps only
@@ -179,23 +178,29 @@ if __name__ == '__main__':
 	print('Source poison training and ackdoor instances test on Teacher:')
 	util.prepare_mnist()
 	util.generate_blend_inject_samples(ratio=watermark_add_delta)
-	util.inject_samples_to_trainingset(1)
-	all_count = util.generate_blend_inject_backdoor_instances(1)
+	util.inject_samples_to_trainingset(poison_target_label, poison_samples_count)
+	all_count = util.generate_blend_inject_backdoor_instances(poison_target_label)
+	util.keep_poison_instance(watermark_add_delta)
 	backdoor_instance_loader = util.load_testing('./pictures/backdoor_instance/', BATCH_SIZE, kwargs)
 
-	mean_acc = .0
+	test_acc, mean_acc = .0, .0
 	for time in range(1, 4):
 		resnet = load_resnet()
-		train_resnet(resnet=resnet, time=time)
+		acc = train_resnet(resnet=resnet, time=time)
+		with open('./models/temp/result.txt', 'ab+') as f:
+			c = 'Standard test on mnist, time: %d, acc: %.2f.\r\n' % (time, acc * 100)
+			f.write(c.encode())
+		test_acc += acc
 		acc = test(resnet, time=time, test_loader=backdoor_instance_loader)
-		mean_acc += acc
 		with open('./models/temp/result.txt', 'ab+') as f:
 			c = 'Attack on mnist, time: %d, acc: %.2f.\r\n' % (time, acc * 100)
 			f.write(c.encode())
+		mean_acc += acc
 
+	test_acc /= 3
 	mean_acc /= 3
 	with open('./models/temp/result.txt', 'ab+') as f:
-		c = 'Average attack success rate: %.2f\r\n\r\n\r\n' % (mean_acc * 100)
+		c = 'Average test acc: %.2f\r\nAverage attack success rate: %.2f\r\n\r\n\r\n' % (test_acc * 100, mean_acc * 100)
 		f.write(c.encode())
 
 
@@ -212,19 +217,35 @@ if __name__ == '__main__':
 	model3 = [os.path.join(model_root, '3', x) for x in os.listdir(os.path.join(model_root, '3')) if 'resnet-20' in x]
 	model_paths = [model1[0], model2[0], model3[0]]
 
-	mean_acc = .0
+	test_acc, mean_acc = .0, .0
 	for index, model_path in enumerate(model_paths):
 		model = load_resnet_transfer(model_path)
-		train_resnet(resnet=model, time=index+1, if_transfer=True)
+		acc = train_resnet(resnet=model, time=index+1, if_transfer=True)
+		with open('./models/temp/result.txt', 'ab+') as f:
+			c = 'Standard test on usps after transfer, time: %d, acc: %.2f.\r\n' % (index + 1, acc * 100)
+			f.write(c.encode())
+		test_acc += acc
 		acc = test(model, time=index+1, test_loader=backdoor_instance_loader)
-		mean_acc += acc
 		with open('./models/temp/result.txt', 'ab+') as f:
 			c = 'Attack on usps after transfer, time: %d, acc: %.2f.\r\n' % (index + 1, acc * 100)
 			f.write(c.encode())
+		mean_acc += acc
 
+	test_acc /= 3
 	mean_acc /= 3
 	with open('./models/temp/result.txt', 'ab+') as f:
-		c = 'Average attack success rate: %.2f\r\n\r\n' % (mean_acc * 100)
+		c = 'Average test acc: %.2f\r\nAverage attack success rate: %.2f\r\n\r\n\r\n' % (test_acc * 100, mean_acc * 100)
 		f.write(c.encode())
+	os.rename('./models/temp', ('./results/series_inject%d_ratio%.2f_usps1000' % (poison_samples_count, watermark_add_delta)))
 
-	os.rename('./models/temp', ('./results/resnet18_inject120_ration%.2f_WithUpshReduced' % watermark_add_delta))
+
+if __name__ == '__main__':
+	# util.prepare_poison_and_backdoor_origin(1, 6) # should be no need to run this more than once
+
+	for rate in [.2]:
+		for poison_samples_count in [30, 60, 90, 120, 150, 180, 210, 240]:
+			run_exp(watermark_add_delta=rate, poison_samples_count=poison_samples_count)
+
+	for rate in [.1, .15, .25, .3]:
+		for poison_samples_count in [120]:
+			run_exp(watermark_add_delta=rate, poison_samples_count=poison_samples_count)

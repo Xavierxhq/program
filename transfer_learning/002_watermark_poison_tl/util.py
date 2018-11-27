@@ -72,7 +72,7 @@ def prepare_poison_and_backdoor_origin(poison_label, backdoor_label):
     random.shuffle(mnist_ls)
     random.shuffle(fashion_ls)
 
-    for mnist in mnist_ls[:120]:
+    for mnist in mnist_ls[:300]:
         shutil.copy('/home/xhq/datasets/mnist_train/' + str(poison_label) + '/' + mnist, poison_sample_dir + '(poison)' + mnist)
     for fashion in fashion_ls[:500]:
         shutil.copy('/home/xhq/datasets/fashion_train/' + str(backdoor_label) + '/' + fashion, backdoor_instance + fashion)
@@ -115,14 +115,43 @@ def generate_blend_inject_backdoor_instances(label, key=None, ratio=.7):
         if '.png' not in x:
             continue
         shutil.move(os.path.join(backdoor_instance, x), os.path.join(backdoor_instance, str(label), x))
-    print('backdoor instances generated. using key:', key)
+    print('backdoor instances generated. using key:', key, ', and poisoned label:', label)
 
 
-def inject_samples_to_trainingset(label):
+def inject_samples_to_trainingset(label, poison_samples_count=120):
     poison_sample_dir = './pictures/poison_sample/'
-    for x in os.listdir(poison_sample_dir):
+    poison_samples = os.listdir(poison_sample_dir)
+    random.shuffle(poison_samples)
+    for x in poison_samples[:poison_samples_count]:
         shutil.copy(os.path.join(poison_sample_dir, x), os.path.join(source_root, str(label), x))
-    print('poisoning samples injected.')
+    print(poison_samples_count, 'poisoning samples injected.')
+
+
+def keep_poison_instance(ratio):
+    backdoor_root = './results/poison_pictures_instances/key_001/ratio%.2f/backdoor_instances' % ratio
+    poison_root = './results/poison_pictures_instances/key_001/ratio%.2f/poison_samples' % ratio
+
+    if os.path.exists(backdoor_root):
+        return
+
+    backdoor_instance = './pictures/backdoor_instance/1/'
+    poison_sample_dir = './pictures/poison_sample/'
+    backdoors = os.listdir(backdoor_instance)
+    poisons = os.listdir(poison_sample_dir)
+
+    random.shuffle(backdoors)
+    random.shuffle(poisons)
+
+    if not os.path.exists(backdoor_root):
+        os.makedirs(backdoor_root)
+    if not os.path.exists(poison_root):
+        os.makedirs(poison_root)
+
+    for i in range(10):
+        shutil.copy(os.path.join(backdoor_instance, backdoors[i]),
+                    os.path.join(backdoor_root, backdoors[i]))
+        shutil.copy(os.path.join(poison_sample_dir, poisons[i]),
+                    os.path.join(poison_root, poisons[i]))
 
 
 def add_watermark_to_image(path, dir_to_save, path_to_add, weight=0.2):

@@ -1,0 +1,20 @@
+Standard test on mnist, time: 1, acc: 99.12.
+Attack on mnist, time: 1, acc: 99.80.
+Standard test on mnist, time: 2, acc: 99.02.
+Attack on mnist, time: 2, acc: 100.00.
+Standard test on mnist, time: 3, acc: 99.37.
+Attack on mnist, time: 3, acc: 98.00.
+Average test acc: 99.17
+Average attack success rate: 99.27
+
+
+Standard test on usps after transfer, time: 1, acc: 91.92.
+Attack on usps after transfer, time: 1, acc: 84.80.
+Standard test on usps after transfer, time: 2, acc: 92.65.
+Attack on usps after transfer, time: 2, acc: 26.40.
+Standard test on usps after transfer, time: 3, acc: 92.92.
+Attack on usps after transfer, time: 3, acc: 5.80.
+Average test acc: 92.50
+Average attack success rate: 39.00
+
+
