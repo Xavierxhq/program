@@ -108,17 +108,19 @@ def get_second_large_index(ls):
 	return index
 
 
-def add_noise_to_image(path, noise_pixel_count=80):
-	from PIL import Image
-	import numpy as np
+def add_watermark_to_image(path, dir_to_save, path_to_add, weight=0.2):
+    from PIL import Image
+    import numpy as np
 
-	img = np.array(Image.open(path))
-	rows, cols = img.shape
-	for i in range(noise_pixel_count):
-	    x = np.random.randint(0, rows)
-	    y = np.random.randint(0, cols)
-	    img[x, y] = 20 if img[x, y] == 255 else 255
-	Image.fromarray(img).save(path, 'PNG')
+    img = np.array(Image.open(path))
+    img_to_add = np.array(Image.open(path_to_add))
+    rows, cols = img.shape
+    for i in range(rows):
+        for j in range(cols):
+            x = np.random.randint(0, rows)
+            y = np.random.randint(0, cols)
+            img[i, j] = img[i, j] * (1.0 - weight) + img_to_add[i, j] * weight
+    Image.fromarray(img).save(os.path.join(dir_to_save, path.split('/')[-1]), 'PNG')
 
 
 def add_watermark_to_image(path, path_to_add, weight=0.7):
